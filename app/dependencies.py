@@ -1,0 +1,7 @@
+from typing import Annotated
+
+from fastapi import Header, HTTPException
+
+async def get_token_header(x_token: Annotated[str, Header()]):
+    if not isinstance(x_token, str):
+        raise HTTPException(status_code=400, detail="X-Token header invalid")
