@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends
 
 from ..dependencies import get_token_header
+from app.schemas.store import StoreCreate, StoreResponse
+from app.services.store_service import StoreService
 
 router = APIRouter(
     prefix="/stores",
@@ -9,11 +11,14 @@ router = APIRouter(
     responses={404: {"description": "Not Found"}}
 )
 
+service = StoreService()
 
 @router.get("")
 def get_stores():
-    return { "stores": [{"name": "blackbuster", "phone": "55 16 98885-1555"}]}
+    return service.list_stores()
 
 @router.post("")
-def create_store():
+def create_store(
+    store: StoreCreate
+):
     return {"message": "Store created successfuly"}
