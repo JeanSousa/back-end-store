@@ -68,7 +68,7 @@ pip install -r requirements.txt
 Run the project with uvicorn (not unicorn! LOL)
 
 ```
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 
 ```
 
